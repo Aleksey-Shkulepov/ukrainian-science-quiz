@@ -79,21 +79,26 @@ body {
 }
 
 .categories {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 12px;
-	margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
 }
 
 .cat {
-	display: inline-block;
-	padding: 12px 18px;
-	background: var(--card);
-	border-radius: 10px;
-	border: 1px solid rgba(11, 45, 74, 0.08);
-	text-decoration: none;
-	color: var(--primary);
-	transition: transform 0.18s ease, box-shadow 0.18s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+    padding: 12px;
+    text-align: center;
+    background: var(--card);
+    border-radius: 10px;
+    border: 1px solid rgba(11, 45, 74, 0.08);
+    text-decoration: none;
+    color: var(--primary);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    word-break: break-word;
 }
 
 .cat:hover {
@@ -144,6 +149,37 @@ body {
 	transition: width 0.45s ease;
 }
 
+.progress-container {
+    display: flex;
+    height: 10px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-right: 12px;
+    flex: 1;
+}
+
+.progress-segment {
+    height: 100%;
+    transition: width 0.45s ease;
+}
+
+.progress-correct {
+    background: linear-gradient(90deg, #57b64f, #7dfa72);
+}
+
+.progress-wrong {
+    background: linear-gradient(90deg, #d40c0c, #ff4d4d);
+}
+
+.progress-pending {
+    background: #f0f0f0;
+}
+
+.progress-partial {
+    background: linear-gradient(90deg, #ffeb3b, #ffc107);
+}
+
 .counter {
 	font-weight: 600;
 }
@@ -161,6 +197,47 @@ body {
 	font-size: 20px;
 	margin: 0;
 	padding: 6px 0;
+}
+
+.question-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 12px 0;
+    border: 1px solid rgba(11, 45, 74, 0.1);
+}
+
+.option.multiple {
+    position: relative;
+    padding-left: 40px;
+}
+
+.option.multiple::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(11, 45, 74, 0.3);
+    border-radius: 4px;
+    background: white;
+}
+
+.option.multiple.selected::before {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.option.multiple.selected::after {
+    content: '✓';
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-weight: bold;
 }
 
 .options {
@@ -215,6 +292,22 @@ body {
 	background: transparent;
 	border: 1px solid rgba(11, 45, 74, 0.08);
 	color: var(--primary);
+}
+
+.confirm-btn {
+    margin-top: 16px;
+    padding: 12px 24px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.confirm-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .result {
