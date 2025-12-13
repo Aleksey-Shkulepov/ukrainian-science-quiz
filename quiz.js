@@ -124,9 +124,13 @@ class Quiz {
             let extraHTML = '';
             
             if (question.type === 'multiple') {
-                optionsHTML = question.options.map((opt, i) => 
-                    `<div class="option multiple" onclick="quiz.toggleMultiple(${i})">${opt}</div>`
-                ).join('');
+                optionsHTML = question.options.map((opt, i) => `
+                    <label class="option multiple" onclick="quiz.toggleMultiple(${i})">
+                        <input type="checkbox" data-index="${i}" style="display: none;">
+                        <span class="checkbox-custom"></span>
+                        <span class="option-text">${opt}</span>
+                    </label>
+                `).join('');
                 extraHTML = `<button class="confirm-btn" onclick="quiz.checkMultiple()" disabled>Підтвердити вибір</button>`;
             } else if (question.type === 'image' && question.image) {
                 optionsHTML = question.options.map((opt, i) => 
@@ -174,14 +178,17 @@ class Quiz {
     }
 
     toggleMultiple(index) {
-        const option = document.querySelectorAll('.option')[index];
+        const checkbox = document.querySelector(`input[data-index="${index}"]`);
+        const label = checkbox.closest('.option');
         
         if (this.selectedMultiple.has(index)) {
             this.selectedMultiple.delete(index);
-            option.classList.remove('selected');
+            checkbox.checked = false;
+            label.classList.remove('selected');
         } else {
             this.selectedMultiple.add(index);
-            option.classList.add('selected');
+            checkbox.checked = true;
+            label.classList.add('selected');
         }
         
         const confirmBtn = document.querySelector('.confirm-btn');

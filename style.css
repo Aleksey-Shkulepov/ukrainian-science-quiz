@@ -12,6 +12,7 @@
 
 body {
     margin: 0;
+    padding-top: 70px;
     font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
     background-color: var(--bg);
     background-image: 
@@ -29,14 +30,19 @@ body {
 }
 
 .site-header {
-	background: linear-gradient(
-		180deg,
-		rgba(11, 45, 74, 0.95),
-		rgba(11, 45, 74, 0.9)
-	);
-	color: #fff;
-	padding: 14px 0;
-	box-shadow: 0 2px 8px rgba(11, 45, 74, 0.12);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: linear-gradient(
+        180deg,
+        rgba(11, 45, 74, 0.95),
+        rgba(11, 45, 74, 0.9)
+    );
+    color: #fff;
+    padding: 14px 0;
+    box-shadow: 0 2px 8px rgba(11, 45, 74, 0.12);
 }
 
 .site-header .wrap {
@@ -224,35 +230,49 @@ body {
 
 .option.multiple {
     position: relative;
-    padding-left: 40px;
+    padding-left: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    min-height: 50px;
 }
 
-.option.multiple::before {
-    content: '';
+.checkbox-custom {
     position: absolute;
     left: 12px;
     top: 50%;
     transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border: 2px solid rgba(11, 45, 74, 0.3);
     border-radius: 4px;
     background: white;
+    transition: all 0.2s ease;
 }
 
-.option.multiple.selected::before {
+.option.multiple:hover .checkbox-custom {
+    border-color: var(--primary);
+}
+
+.option.multiple.selected .checkbox-custom {
     background: var(--primary);
     border-color: var(--primary);
 }
 
-.option.multiple.selected::after {
-    content: '✓';
+.option.multiple.selected .checkbox-custom::after {
+    content: '';
     position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: white;
-    font-weight: bold;
+    left: 7px;
+    top: 3px;
+    width: 10px;
+    height: 14px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.option-text {
+    flex: 1;
 }
 
 .confirm-btn {
