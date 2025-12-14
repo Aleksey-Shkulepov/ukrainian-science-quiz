@@ -12,7 +12,7 @@
 
 body {
     margin: 0;
-    padding-top: 70px;
+    padding-top: 95px;
     font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
     background-color: var(--bg);
     background-image: 
@@ -21,6 +21,26 @@ body {
     background-size: 20px 20px;
     color: var(--primary);
     -webkit-font-smoothing: antialiased;
+
+    display: grid;
+    grid-template-rows: 1fr auto;
+    min-height: 100vh;
+}
+
+.logo {
+	margin: 0;
+	font-size: 20px;
+	letter-spacing: 0.6px;
+}
+
+.main-nav a {
+	color: rgba(255, 255, 255, 0.9);
+	text-decoration: none;
+	margin-left: 16px;
+}
+
+.main {
+	padding: 36px 20px;
 }
 
 .wrap {
@@ -51,21 +71,40 @@ body {
 	justify-content: space-between;
 }
 
-.logo {
-	margin: 0;
-	font-size: 20px;
-	letter-spacing: 0.6px;
+
+
+.site-footer {
+    background: linear-gradient(
+        180deg,
+        rgba(11, 45, 74, 0.95),
+        rgba(11, 45, 74, 0.9)
+    );
+    color: rgba(255, 255, 255, 0.9);
+    padding: 8px 0;
 }
 
-.main-nav a {
-	color: rgba(255, 255, 255, 0.9);
-	text-decoration: none;
-	margin-left: 16px;
+.site-footer .footer-grid {
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
 }
 
-.main {
-	padding: 36px 20px;
+.site-footer a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    padding: 4px 6px;
+    border-radius: 4px;
 }
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+.site-footer .footer-links {
+    margin-left: 20px;
+}
+
+
 
 .hero {
 	display: flex;
@@ -186,6 +225,7 @@ body {
 	font-size: 20px;
 	margin: 0;
 	padding: 6px 0;
+	color: var(--primary);
 }
 
 .question-image {
@@ -231,48 +271,38 @@ body {
 .option.multiple {
     position: relative;
     padding-left: 50px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    min-height: 50px;
 }
 
-.checkbox-custom {
+.option.multiple::before {
+    content: '';
     position: absolute;
     left: 12px;
     top: 50%;
     transform: translateY(-50%);
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border: 2px solid rgba(11, 45, 74, 0.3);
     border-radius: 4px;
     background: white;
-    transition: all 0.2s ease;
 }
 
-.option.multiple:hover .checkbox-custom {
-    border-color: var(--primary);
-}
-
-.option.multiple.selected .checkbox-custom {
+.option.multiple.selected::before {
     background: var(--primary);
     border-color: var(--primary);
 }
 
-.option.multiple.selected .checkbox-custom::after {
+.option.multiple.selected::after {
     content: '';
     position: absolute;
-    left: 7px;
-    top: 3px;
-    width: 10px;
-    height: 14px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}
-
-.option-text {
-    flex: 1;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>');
+    background-size: 22px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .confirm-btn {
@@ -320,14 +350,6 @@ body {
 
 .result h2 {
 	margin: 6px 0;
-}
-
-.footer-grid {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 14px 0;
-	color: var(--muted);
 }
 
 .hero-visual {

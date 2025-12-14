@@ -5,7 +5,8 @@ class Quiz {
             index: 0, 
             score: 0, 
             total: 0,
-            stats: { correct: 0, wrong: 0, pending: 0 }
+            partialCount: 0,
+            stats: { correct: 0, wrong: 0, partial: 0, pending: 0 }
         };
         this.currentCategory = '';
         this.selectedMultiple = new Set();
@@ -36,6 +37,7 @@ class Quiz {
             this.state.total = this.questions.length;
             this.state.index = 0;
             this.state.score = 0;
+            this.state.partialCount = 0;
             this.updateStats();
             
             this.renderQuestion();
@@ -78,10 +80,11 @@ class Quiz {
 
     updateStats() {
         const correct = this.state.score;
-        const wrong = this.state.index - correct;
+        const partial = this.state.partialCount;
+        const wrong = this.state.index - correct - partial;
         const pending = this.state.total - this.state.index;
         
-        this.state.stats = { correct, wrong, pending };
+        this.state.stats = { correct, wrong, partial, pending };
     }
 
     updateProgress() {
@@ -90,6 +93,7 @@ class Quiz {
         const total = this.state.total;
         
         const correctWidth = (stats.correct / total) * 100;
+        const partialWidth = (stats.partial / total) * 100;
         const wrongWidth = (stats.wrong / total) * 100;
         const pendingWidth = (stats.pending / total) * 100;
         
@@ -97,6 +101,7 @@ class Quiz {
         if (progressContainer) {
             progressContainer.innerHTML = `
                 <div class="progress-segment progress-correct" style="width: ${correctWidth}%"></div>
+                <div class="progress-segment progress-partial" style="width: ${partialWidth}%"></div>
                 <div class="progress-segment progress-wrong" style="width: ${wrongWidth}%"></div>
                 <div class="progress-segment progress-pending" style="width: ${pendingWidth}%"></div>
             `;
@@ -124,13 +129,9 @@ class Quiz {
             let extraHTML = '';
             
             if (question.type === 'multiple') {
-                optionsHTML = question.options.map((opt, i) => `
-                    <label class="option multiple" onclick="quiz.toggleMultiple(${i})">
-                        <input type="checkbox" data-index="${i}" style="display: none;">
-                        <span class="checkbox-custom"></span>
-                        <span class="option-text">${opt}</span>
-                    </label>
-                `).join('');
+                optionsHTML = question.options.map((opt, i) => 
+                    `<div class="option multiple" onclick="quiz.toggleMultiple(${i})">${opt}</div>`
+                ).join('');
                 extraHTML = `<button class="confirm-btn" onclick="quiz.checkMultiple()" disabled>Підтвердити вибір</button>`;
             } else if (question.type === 'image' && question.image) {
                 optionsHTML = question.options.map((opt, i) => 
@@ -178,17 +179,14 @@ class Quiz {
     }
 
     toggleMultiple(index) {
-        const checkbox = document.querySelector(`input[data-index="${index}"]`);
-        const label = checkbox.closest('.option');
+        const option = document.querySelectorAll('.option')[index];
         
         if (this.selectedMultiple.has(index)) {
             this.selectedMultiple.delete(index);
-            checkbox.checked = false;
-            label.classList.remove('selected');
+            option.classList.remove('selected');
         } else {
             this.selectedMultiple.add(index);
-            checkbox.checked = true;
-            label.classList.add('selected');
+            option.classList.add('selected');
         }
         
         const confirmBtn = document.querySelector('.confirm-btn');
@@ -213,6 +211,10 @@ class Quiz {
             }
         }
         
+        const hasWrong = selected.some(idx => !correct.includes(idx));
+        const hasAllCorrect = correct.every(idx => selected.includes(idx));
+        const isPartial = !hasWrong && !hasAllCorrect && selected.length > 0;
+        
         options.forEach((option, index) => {
             option.style.pointerEvents = 'none';
             if (correct.includes(index)) {
@@ -223,14 +225,10 @@ class Quiz {
             }
         });
         
-        const hasWrong = selected.some(idx => !correct.includes(idx));
-        const hasAllCorrect = correct.every(idx => selected.includes(idx));
-        const isPartial = !hasWrong && !hasAllCorrect && selected.length > 0;
-        
         if (isCorrect) {
             this.state.score++;
         } else if (isPartial) {
-            this.markPartialProgress();
+            this.state.partialCount++;
         }
         
         setTimeout(() => {
@@ -241,16 +239,6 @@ class Quiz {
                 this.showResult();
             }
         }, 1000);
-    }
-
-    markPartialProgress() {
-        const progressContainer = document.querySelector('.progress-container');
-        if (progressContainer) {
-            const partialSegment = document.createElement('div');
-            partialSegment.className = 'progress-segment progress-partial';
-            partialSegment.style.width = (1 / this.state.total * 100) + '%';
-            progressContainer.appendChild(partialSegment);
-        }
     }
 
     showResult() {
@@ -279,6 +267,7 @@ class Quiz {
         
         this.state.index = 0;
         this.state.score = 0;
+        this.state.partialCount = 0;
         this.selectedMultiple.clear();
         this.updateStats();
         
@@ -289,6 +278,7 @@ class Quiz {
             <div class="meta-row">
                 <div class="progress-container">
                     <div class="progress-segment progress-correct" style="width: 0%"></div>
+                    <div class="progress-segment progress-partial" style="width: 0%"></div>
                     <div class="progress-segment progress-wrong" style="width: 0%"></div>
                     <div class="progress-segment progress-pending" style="width: 100%"></div>
                 </div>
