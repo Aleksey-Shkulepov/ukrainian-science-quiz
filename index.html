@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Наукові відкриття України</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <script type="module" crossorigin src="/ukrainian-science-quiz/assets/main-AMBy53ha.js"></script>
+  <link rel="stylesheet" crossorigin href="/ukrainian-science-quiz/assets/main-BcqYd_vX.css">
+</head>
+<body>     
+	<header class="site-header">
+		<div class="wrap">
+			<h1 class="logo">Наукові відкриття України</h1>
+			<nav class="main-nav">
+				<a href="./index.html">Головна</a>
+				<a href="./about.html">Про проєкт</a>
+			</nav>
+		</div>
+	</header>
+
+	<main class="main">
+		<div class="wrap">
+			<section class="hero">
+				<div class="hero-left">
+					<h2>Перевір свої знання &mdash; обери категорію</h2>
+					<p>
+						Вікторина: коротко, цікаво, пізнавально. 
+						Кожна категорія - 12 запитань.
+					</p>
+
+					<div class="categories">
+						<a class="cat-card style-1" href="quiz.html?category=kosmos">
+							<div class="cat-chevron">
+								<i class="bi bi-rocket-takeoff"></i>
+							</div>
+							<div class="cat-info">
+								<span class="cat-label">Україна і Космос</span>
+								<span class="cat-name">Відкрий таємниці всесвіту</span>
+							</div>
+						</a>
+
+						<a class="cat-card style-2" href="quiz.html?category=fizyka">
+							<div class="cat-chevron">
+								<i class="bi bi-magnet"></i>
+							</div>
+							<div class="cat-info">
+								<span class="cat-label">Україна і Фізика</span>
+								<span class="cat-name">Від атома до зірок</span>
+							</div>
+						</a>
+
+						<a class="cat-card style-3" href="quiz.html?category=biologia">
+							<div class="cat-chevron">
+								<i class="bi bi-virus"></i>
+							</div>
+							<div class="cat-info">
+								<span class="cat-label">Україна і Біологія</span>
+								<span class="cat-name">Природа та людина</span>
+							</div>
+						</a>
+
+						<a class="cat-card style-4" href="quiz.html?category=matematyka">
+							<div class="cat-chevron">
+								<i class="bi bi-calculator"></i>
+							</div>
+							<div class="cat-info">
+								<span class="cat-label">Україна і Математика</span>
+								<span class="cat-name">Логіка та цифри</span>
+							</div>
+						</a>
+					</div>
+
+				</div>
+				<div class="hero-right">
+					<div class="hero-visual">
+						<div id="scienceCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+							<div class="carousel-indicators">
+								<button type="button" data-bs-target="#scienceCarousel" data-bs-slide-to="0" class="active"></button>
+								<button type="button" data-bs-target="#scienceCarousel" data-bs-slide-to="1"></button>
+								<button type="button" data-bs-target="#scienceCarousel" data-bs-slide-to="2"></button>
+								<button type="button" data-bs-target="#scienceCarousel" data-bs-slide-to="3"></button>
+							</div>
+							
+							<div class="carousel-inner">
+								<div class="carousel-item active">
+									<img src="/ukrainian-science-quiz/images/ukrainian-science-1.jpg" class="d-block w-100" alt="1">
+									<div class="image-overlay"></div>
+								</div>
+								<div class="carousel-item">
+									<img src="/ukrainian-science-quiz/images/ukrainian-science-2.jpeg" class="d-block w-100" alt="2">
+									<div class="image-overlay"></div>
+								</div>
+								<div class="carousel-item">
+									<img src="/ukrainian-science-quiz/images/ukrainian-science-3.jpeg" class="d-block w-100" alt="3">
+									<div class="image-overlay"></div>
+								</div>
+								<div class="carousel-item">
+									<img src="/ukrainian-science-quiz/images/ukrainian-science-4.jpg" class="d-block w-100" alt="4">
+									<div class="image-overlay"></div>
+								</div>
+							</div>
+							
+							<button class="carousel-control-prev" type="button" data-bs-target="#scienceCarousel" data-bs-slide="prev">
+								<span class="carousel-control-icon" aria-hidden="true">
+									<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+										<path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" 
+											stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</span>
+								<span class="visually-hidden">Previous</span>
+							</button>
+							<button class="carousel-control-next" type="button" data-bs-target="#scienceCarousel" data-bs-slide="next">
+								<span class="carousel-control-icon" aria-hidden="true">
+									<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+										<path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" 
+											stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</span>
+								<span class="visually-hidden">Next</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="how">
+				<h3>Як проходити</h3>
+				<ol>
+					<li>Обери категорію</li>
+					<li>Відповідай на 12 питань послідовно</li>
+					<li>Отримай результат та повернися на головну</li>
+				</ol>
+			</section>
+		</div>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap footer-grid">
+			<div>© 2025 — Проєкт «Наукові відкриття України»</div>
+			<div class="footer-links">
+				<a href="./index.html">Головна</a> · <a href="./about.html">Про</a>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
