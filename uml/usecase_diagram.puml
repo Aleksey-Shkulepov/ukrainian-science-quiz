@@ -1,0 +1,14 @@
+@startuml
+
+actor User
+
+User --> (Open Home Page)
+User --> (Open About Page)
+User --> (Choose category)
+
+(Choose category) .> (Answer Questions) : <<Start Quiz>>
+(Answer Questions) .> (View Result)
+(View Result) .> (Retry Quiz)
+(View Result) .> (Open Home Page)
+
+@enduml

@@ -1,0 +1,57 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class QuizController {
+  - model: QuizModel
+  - view: QuizView
+  - locked: boolean
+  + init(category: string)
+  + render()
+  + bindEvents()
+  + onSelect(index: number)
+  + onConfirmMultiple()
+  + next()
+  + retry()
+}
+
+class QuizModel {
+  - questions: Array
+  - state: Object
+  - selectedMultiple: Set
+  + setQuestions(questions: Array)
+  + getCurrentQuestion()
+  + shuffleOptions(question)
+  + answerSingle(selectedIndex: number)
+  + answerMultiple(selected: Array, correct: Array)
+  + next()
+  + isFinished(): boolean
+  + reset()
+  - updateStats()
+}
+
+class QuizView {
+  + renderQuestion(question, onRendered: Function)
+  + updateProgress(state: Object)
+  + showResult(state: Object, retryCallback: Function)
+  + showError(message: string)
+}
+
+class Question {
+  + q: string
+  + options: Array
+  + answer: number | Array
+  + type: string
+  + image: string
+}
+
+class QuizService {
+  + loadQuestions(category: string): Promise<Array>
+}
+
+QuizController --> QuizModel
+QuizController --> QuizView
+QuizController ..> QuizService : uses
+QuizModel --> Question
+
+@enduml

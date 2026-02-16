@@ -1,0 +1,27 @@
+.main-nav a {
+	color: rgba(255, 255, 255, 0.9);
+	text-decoration: none;
+	margin-left: 16px;
+}
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: linear-gradient(
+        180deg,
+        rgba(11, 45, 74, 0.95),
+        rgba(11, 45, 74, 0.9)
+    );
+    color: #fff;
+    padding: 14px 0;
+    box-shadow: 0 2px 8px rgba(11, 45, 74, 0.12);
+}
+
+.site-header .wrap {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}

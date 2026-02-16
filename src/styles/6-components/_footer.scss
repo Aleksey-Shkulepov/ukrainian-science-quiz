@@ -1,0 +1,30 @@
+.site-footer {
+    background: linear-gradient(
+        180deg,
+        rgba(12, 46, 75, 0.95),
+        rgba(11, 45, 74, 0.9)
+    );
+    color: rgba(255, 255, 255, 0.9);
+    padding: 8px 0;
+}
+
+.site-footer .footer-grid {
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+}
+
+.site-footer a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+.site-footer .footer-links {
+    margin-left: 20px;
+}

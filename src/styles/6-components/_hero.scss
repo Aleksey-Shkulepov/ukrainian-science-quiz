@@ -1,0 +1,49 @@
+.hero {
+	display: flex;
+	gap: 24px;
+	align-items: center;
+}
+
+.hero-left {
+	flex: 1;
+}
+
+.hero-right {
+	width: 360px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+.how {
+	margin-top: 28px;
+	background: rgba(255, 255, 255, 1);
+	padding: 18px;
+	border-radius: 10px;
+	border: 1px solid rgba(11, 45, 74, 0.04);
+}
+
+.hero-visual {
+    width: 100%;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 8px 30px rgba(11, 45, 74, 0.12);
+    border: 1px solid rgba(11, 45, 74, 0.06);
+}
+
+@media (max-width: 800px) {
+	.hero {
+		flex-direction: column;
+	}
+	
+	.hero-right {
+		width: 100%;
+	}
+
+    .hero-visual { 
+        height: 180px; 
+    }
+}
